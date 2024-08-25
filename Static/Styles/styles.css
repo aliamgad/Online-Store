@@ -57,7 +57,9 @@ nav a:hover {
 main {
     padding: 20px;
 }
-
+nav a.logout {
+    float: right;
+}
 /* Authentication Form Styles */
 .auth-form {
     max-width: 500px;

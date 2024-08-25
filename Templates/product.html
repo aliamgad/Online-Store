@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - QuestNexus</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css') }}">
     <script src="product.js" defer></script>
 </head>
 <body>
     <header>
         <h1>QuestNexus</h1>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="login.html">Login</a>
-            <a href="register.html">Register</a>
+            <a href={{ url_for("index") }}>Home</a>
+            <a href={{ url_for("login") }}>Login</a>
+            <a href={{ url_for("register") }}>Register</a>
             <a href="shop.html">Shop</a>
             <a href="settings.html">Settings</a>
         </nav>
