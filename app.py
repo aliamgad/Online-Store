@@ -31,7 +31,14 @@ def admin():
             product['name'] = request.form['product-name']
             product['price'] = request.form['product-price']
             product['description'] = request.form['product-description']
+            
             product['photo'] = request.files['product-photo']
+
+            if product['photo']:
+                if not validators.allowed_file_size(product['photo']):
+                    return f"Unallowed size."
+                elif not validators.allowed_file(product['photo'].filename):
+                    return f"Unallowed extention."
             
             if not os.path.exists(app.config['UPLOAD_FOLDER']):
                 os.makedirs(app.config['UPLOAD_FOLDER'])
@@ -39,7 +46,6 @@ def admin():
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], product['photo'].filename)
             
             product['photo'].save(filepath)
-            
             db.add_product(connection,product['name'],product['price'],product['description'],product['photo'].filename)
 
         products = db.get_all_product(connection)
@@ -48,43 +54,42 @@ def admin():
         return redirect(url_for('login'))
 
 
-@app.route('/setting', methods=['GET', 'POST',])
-def setting():
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
     if 'username' in session:
         if request.method == 'GET':
             username = request.args.get('username', session['username'])
             if username != session['username']:
                 return f"unauthorized"
             data = db.get_user(connection, username)
-            return render_template('setting.html', data=data)
+            return render_template('settings.html', data=data)
         
         elif request.method == 'POST':
-            form_type = request.form.get('form_name')
             username = request.args.get('username', session['username'])
             if username != session['username']:
                 return 'unathoruzed'
-            if form_type == 'upload_photo':
-                photo = request.files.get('profile-photo')
+            
+            photo = request.files.get('profile-photo')
 
-                if photo:
-                    if not validators.allowed_file_size(photo):
-                        return f"Unallowed size."
-                    elif not validators.allowed_file(photo.filename):
-                        return f"Unallowed extention."
-                    else:
-                        db.update_photo(connection, photo.filename, username)
-                        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo.filename))
+            if photo:
+                if not validators.allowed_file_size(photo):
+                    return f"Unallowed size."
+                elif not validators.allowed_file(photo.filename):
+                    return f"Unallowed extention."
+                else:
+                    db.update_photo(connection, photo.filename, username)
+                    photo.save(os.path.join(app.config['UPLOAD_FOLDER'], photo.filename))
 
-            elif form_type == 'update_user_data':
-                user_data = {
-                    #"username": session['username'],
-                    "fullname": request.form.get('name'),
-                    "balanced": request.form.get('balance')
-                }
-                db.update_user(connection , user_data)
+            
+            user_data = {
+                "username": session['username'],
+                "fullname": request.form.get('name'),
+                "balnaced": request.form.get('balance')
+            }
+            db.update_user(connection , user_data)
             
             data = db.get_user(connection, username)
-            return render_template('setting.html', data=data) 
+            return render_template('settings.html', data=data) 
     else:
         return redirect(url_for('login'))
     

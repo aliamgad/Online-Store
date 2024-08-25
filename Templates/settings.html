@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - QuestNexus</title>
-    <link rel="stylesheet" href=""{{ url_for('static', filename='Styles/styles.css') }}>
+    <link rel="stylesheet" href={{ url_for('static', filename='Styles/styles.css') }}>
 </head>
 <body>
     <header>
@@ -14,26 +14,32 @@
             <a href={{ url_for("login") }}>Login</a>
             <a href={{ url_for("register") }}>Register</a>
             <a href="shop.html">Shop</a>
-            <a href={{ url_for("setting") }}>Settings</a>
+            <a href={{ url_for("settings") }}>Settings</a>
         </nav>
     </header>
     <main>
         <section class="settings-form">
             <h2>User Settings</h2>
-            <form action="/update-settings" method="POST" enctype="multipart/form-data">
+            <form action="/settings" method="POST" enctype="multipart/form-data">
                 <div class="photo-upload">
                     <label for="profile-photo">Profile Photo:</label>
-                    <input type="file" id="profile-photo" name="profile-photo" accept="image/*" onchange="previewImage(event)">
                     <div class="photo-preview" id="photo-preview">
-                        <img id="preview-image" src="#" alt="Profile Photo Preview">
+                        <img id="preview-image" src="{{ url_for('static', filename='uploads/' + data[5]) }}" alt="Profile Photo Preview">
+                    </div>
+                    <div style = "display: flex;
+                                  justify-content: center;">
+                        <input type="file" id="profile-photo" name="profile-photo" accept="image/*" onchange="previewImage(event)">
                     </div>
                 </div>
 
+                <label for="username">User Name:</label>
+                <input type="text" id="username" name="username" value="{{data[1]}}" readonly>
+
                 <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" value="{{data[3]}}">
 
                 <label for="balance">Account Balance:</label>
-                <input type="number" id="balance" name="balance" step="0.01" min="0" required>
+                <input type="number" id="balance" name="balance" step="1" min="0" value="{{data[4]}}">
 
                 <button type="submit">Update Settings</button>
             </form>
