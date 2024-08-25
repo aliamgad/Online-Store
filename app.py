@@ -14,18 +14,6 @@ app.config['SESSION_COOKIE_HTTPONLY'] = False
 
 
 
-# Example product data
-products = [
-    {"id": 1, "name": "Game A", "price": "$19.99", "image": "game-a.jpg"},
-    {"id": 2, "name": "Game B", "price": "$29.99", "image": "game-b.jpg"},
-    # Add more products as needed
-]
-
-@app.route('/api/products', methods=['GET'])
-def get_products():
-    return jsonify(products)
-
-
 
 
 
