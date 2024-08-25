@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - GameStop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>GameStop</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+            <a href="shop.html">Shop</a>
+            <a href="settings.html">Settings</a>
+        </nav>
+    </header>
+    <main>
+        <!-- Search Section -->
+        <section class="search-bar">
+            <h3>Search Products</h3>
+            <form class="search-form" onsubmit="return false;">
+                <input type="text" id="search-input" placeholder="Search for products..." required class="search-input">
+                <button type="button" class="search-button" onclick="filterProducts()">Search</button>
+            </form>
+        </section>
+        
+        <!-- Product List -->
+        <section id="product-list" class="product-grid">
+            <!-- Products will be inserted here by JavaScript -->
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 GameStop. All rights reserved.
+    </footer>
+
+    <script>
+        // Fetch products from the Python backend (Flask API)
+        async function fetchProducts() {
+            try {
+                const response = await fetch('/api/products'); // Adjust URL if necessary
+                const products = await response.json();
+                return products;
+            } catch (error) {
+                console.error('Error fetching products:', error);
+                return [];
+            }
+        }
+
+        function displayProducts(products) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = ''; // Clear previous content
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+
+                productDiv.innerHTML = `
+                    <a href="product.html?id=${product.id}">
+                        <img src="${product.image}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p class="price">${product.price}</p>
+                    </a>
+                `;
+
+                productList.appendChild(productDiv);
+            });
+        }
+
+        async function init() {
+            const products = await fetchProducts();
+            displayProducts(products);
+        }
+
+        async function filterProducts() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const products = await fetchProducts();
+            
+            if (searchInput === '') {
+                // Display all products if search input is empty
+                displayProducts(products);
+            } else {
+                const filteredProducts = products.filter(product => 
+                    product.name.toLowerCase().includes(searchInput)
+                );
+                displayProducts(filteredProducts);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

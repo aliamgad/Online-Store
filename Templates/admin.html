@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #121212; /* Dark background color */
+            color: #e0e0e0; /* Light text color */
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: #1e1e1e; /* Slightly lighter background for the container */
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #ffffff; /* White color for headings */
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #b0b0b0; /* Light gray for labels */
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #333333; /* Darker background for input fields */
+            color: #ffffff; /* White text for input fields */
+            border: 1px solid #444444; /* Slightly lighter border */
+            border-radius: 4px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue background for buttons */
+            color: #ffffff; /* White text for buttons */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #444444; /* Darker border for the table */
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #333333; /* Darker background for table headers */
+            color: #ffffff; /* White text for table headers */
+        }
+        tr:nth-child(even) {
+            background-color: #2a2a2a; /* Slightly darker rows for better readability */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Page</h1>
+
+        <!-- Add Product Form -->
+        <form id="product-form">
+            <div class="form-group">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" name="product-name" required>
+            </div>
+            <div class="form-group">
+                <label for="product-price">Product Price:</label>
+                <input type="number" id="product-price" name="product-price" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="product-description">Product Description:</label>
+                <textarea id="product-description" name="product-description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Add Product</button>
+            </div>
+        </form>
+
+        <!-- Users Table -->
+        <h2>Users</h2>
+        <table id="users-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Registration Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- User rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to fetch and display users
+        function loadUsers() {
+            fetch('/api/users') // Replace with your server endpoint
+                .then(response => response.json())
+                .then(users => {
+                    const tableBody = document.querySelector('#users-table tbody');
+                    tableBody.innerHTML = ''; // Clear existing rows
+
+                    users.forEach(user => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${user.id}</td>
+                            <td>${user.username}</td>
+                            <td>${user.email}</td>
+                            <td>${new Date(user.registrationDate).toLocaleDateString()}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching users:', error);
+                });
+        }
+
+        // Load users when the page loads
+        window.addEventListener('load', loadUsers);
+
+        // Add Product Form Submission
+        document.getElementById('product-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Gather form data
+            const formData = {
+                name: document.getElementById('product-name').value,
+                price: parseFloat(document.getElementById('product-price').value),
+                description: document.getElementById('product-description').value
+            };
+
+            // Send the data to the server
+            fetch('/api/add-product', { // Replace with your server endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Product added successfully!');
+                    // Optionally, clear the form and reload users
+                    document.getElementById('product-form').reset();
+                    loadUsers(); // Refresh user list if needed
+                } else {
+                    alert('Failed to add product.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred.');
+            });
+        });
+    </script>
+</body>
+</html>

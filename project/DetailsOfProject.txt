@@ -1,0 +1,31 @@
+طب اي فكرة بالضبط اللي هنذها ؟ اي فكرة عادي مفيش اي مشكلة بس
+ (بشرط)  وهو أنه يكون E-commerce يعني يكون في Product بيتباع و في Money Transactions  بالشكل الي تحبوه بس المهم يكون موجود. 
+
+Required Features:
+
+1- Authentication
+2- File upload
+3- Add new product 
+4- Make transactions for buying products
+5- Using Database (SQLite)
+
+Vulnerabilities to be mitigated:
+
+1- SQL injection
+2- Unrestricted file upload
+3- Access control misconfigurations (IDOR)
+5- XSS & SSTi 
+6- SSRF 
+7- Business logic vulnerabilities (Price Manipulation)
+
+طبعاً في حاجات من دول لسة هناخدها خلال المحاضرتين اللي جايين فا متتخضوش. 
+
+بالنسبة ل ال Frontend مش هيكون ضروري تعملوه بشكل احترافى، لأن تركيزنا المفروض هيكون اكتر على ان ال Backend معمول بشكل آمن، ولكن طبعا يكون في Frontend موضح ال Features كويس. 
+
+ممكن تستعملوا Templates جاهزة لل Fronend عادي، عايزين تستعملوا Bootstrap  براحتكم بردو. 
+
+و كل ما كان ال Website مترابط و منظم كل لما كان احسن بس الي هتتناقشوا فيه بشكل اساسي هو ال Backend
+
+طبعا مننساش اننا نستفيد بال GitHub Repository اللي مرفيع عليها الأكواد و دا هيكون Reference مفيد جدا و هيساعدكوا تفتكروا ال vulnerabilities اللي واجب علينا نتجنبها.
+
+بالتوفيق ليكم جميعاً إن شاء الله.

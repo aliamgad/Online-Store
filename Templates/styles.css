@@ -1,0 +1,414 @@
+/* General Styles */
+body {
+   font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Header Styles */
+header {
+    background-color: #1a1a1a;
+    color: #00ff00; /* Glowing green */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Green glow */
+    border-radius: 20px; /* Rounded corners */
+    margin: 20px auto;
+    max-width: 1200px;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #00ff00; /* Glowing green */
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); /* Green glow */
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+    border-radius: 20px; /* Rounded corners */
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+nav a {
+    color: #00ff00; /* Glowing green */
+    padding: 14px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    display: block;
+    font-size: 1em;
+}
+
+nav a:hover {
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.7); /* Green glow on hover */
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+}
+
+/* Authentication Form Styles */
+.auth-form {
+    max-width: 500px;
+    margin: auto;
+    background-color: #1a1a1a;
+    border-radius: 12px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glow */
+}
+
+.auth-form h2 {
+    font-size: 2em;
+    color: #00ff00; /* Glowing green */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form label {
+    margin-bottom: 5px;
+}
+
+.auth-form input {
+    padding: 10px;
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    background-color: #333;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+
+.auth-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 12px; /* Rounded corners */
+    background-color: #333;
+    color: #00ff00; /* Glowing green */
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow */
+    transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+    background-color: #444;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Green glow on hover */
+}
+
+.auth-form p {
+    text-align: center;
+}
+
+.auth-form a {
+    color: #00ff00; /* Glowing green */
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #1a1a1a;
+    color: #00ff00; /* Glowing green */
+    border-top: 1px solid #00ff00; /* Green line at the top */
+    margin-top: 20px;
+}
+
+/* Shop Page Styles */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.product {
+    background-color: #1a1a1a;
+    border-radius: 12px; /* Rounded corners */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow */
+    text-align: center;
+    flex: 1 1 calc(33.333% - 20px); /* Three products per row */
+    margin-bottom: 20px;
+}
+
+.product img {
+    max-width: 100%;
+    border-radius: 12px; /* Rounded corners */
+}
+
+.product h3 {
+    font-size: 1.2em;
+    color: #00ff00; /* Glowing green */
+    margin: 10px 0;
+}
+
+.product .price {
+    font-size: 1em;
+    color: #00ff00; /* Glowing green */
+}
+
+.product a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+.product a:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+/* Product Detail Page Styles */
+.product-detail-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #1a1a1a;
+    border-radius: 12px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glow */
+}
+
+.product-image img {
+    max-width: 100%;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Green glow */
+}
+
+.product-info {
+    max-width: 600px;
+}
+
+.product-info h1 {
+    font-size: 2.5em;
+    color: #00ff00; /* Glowing green */
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); /* Green glow */
+}
+
+.product-info .price {
+    font-size: 1.8em;
+    color: #00ff00; /* Glowing green */
+    margin: 10px 0;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); /* Green glow */
+}
+
+.product-info .description {
+    margin: 20px 0;
+}
+
+.product-info button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px; /* Rounded corners */
+    background-color: #333;
+    color: #00ff00; /* Glowing green */
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow */
+    transition: background-color 0.3s ease;
+}
+
+.product-info button:hover {
+    background-color: #444;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Green glow on hover */
+}
+/* Settings Form Styles */
+.settings-form {
+    max-width: 600px;
+    margin: auto;
+    background-color: #1a1a1a;
+    border-radius: 12px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glow */
+}
+
+.settings-form h2 {
+    font-size: 2em;
+    color: #00ff00; /* Glowing green */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.settings-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-form label {
+    margin-bottom: 5px;
+}
+
+.settings-form input {
+    padding: 10px;
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    background-color: #333;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+
+.settings-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 12px; /* Rounded corners */
+    background-color: #333;
+    color: #00ff00; /* Glowing green */
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow */
+    transition: background-color 0.3s ease;
+}
+
+.settings-form button:hover {
+    background-color: #444;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Green glow on hover */
+}
+
+/* Photo Upload Styles */
+.photo-upload {
+    margin-bottom: 15px;
+}
+
+.photo-upload label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.photo-upload input[type="file"] {
+    display: none;
+}
+
+.photo-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #00ff00; /* Glowing green border */
+    border-radius: 12px; /* Rounded corners */
+    padding: 10px;
+    background-color: #333;
+    width: 200px; /* Adjust width as needed */
+    height: 200px; /* Adjust height as needed */
+    margin: 10px auto;
+}
+
+.photo-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px; /* Rounded corners for the image */
+    object-fit: cover; /* Ensures the image covers the box */
+}
+
+/* Welcome Text Styles */
+.welcome-text {
+    text-align: center;
+    color: #e0e0e0; /* Light text color for contrast */
+    background-color: #1a1a1a; /* Dark background for section */
+    border-radius: 12px; /* Rounded corners */
+    padding: 40px;
+    margin: 20px auto;
+    max-width: 800px; /* Maximum width for content area */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glow */
+}
+
+.welcome-text h2 {
+    font-size: 2.5em;
+    color: #00ff00; /* Glowing green */
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); /* Green glow */
+    margin-bottom: 20px;
+}
+
+.welcome-text p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 800px;
+    text-align: center;
+    background-color: #1a1a1a; /* Dark background */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glow */
+}
+
+/* Glowing Green Text for Search Title */
+.search-bar h3 {
+    font-size: 24px;
+    color: #00ff00; /* Neon green color */
+    text-shadow: 0 0 8px #00ff00, 0 0 16px #00ff00, 0 0 24px #00ff00;
+    margin-bottom: 10px;
+}
+
+/* Search Form Styles */
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Grey Search Field */
+.search-input {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #333; /* Dark grey background */
+    color: #e0e0e0; /* Light grey text */
+    border: 2px solid #00ff00; /* Glowing green border */
+    border-radius: 8px 0 0 8px; /* Rounded corners */
+    width: 70%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* White Input Field */
+.search-input::placeholder {
+    color: #666; /* Slightly darker grey for the placeholder text */
+}
+
+.search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333; /* Dark grey background */
+    color: #00ff00; /* Neon green text */
+    border: 2px solid #00ff00; /* Glowing green border */
+    border-radius: 0 8px 8px 0; /* Rounded corners */
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #444; /* Slightly lighter grey on hover */
+    color: #e0e0e0; /* Light grey text on hover */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Stronger green glow on hover */
+}
+
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #1a1a1a;
+    color: #00ff00; /* Glowing green */
+    border-top: 1px solid #00ff00; /* Green line at the top */
+    margin-top: 20px;
+}
