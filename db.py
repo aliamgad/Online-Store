@@ -106,12 +106,12 @@ def product_db(connection):
     
     connection.commit()
     
-def add_product(connection,productname,price,description): #adminOnly #see if we remove the photo or not from the adding not in setting
+def add_product(connection,productname,price,description,photo): #adminOnly #see if we remove the photo or not from the adding not in setting
     cursor = connection.cursor()
     
-    query = ''' INSERT INTO products (productname,price,description) VALUES(?,?,?)'''
+    query = ''' INSERT INTO products (productname,price,description,photo) VALUES(?,?,?,?)'''
     
-    cursor.execute(query,(productname,price,description))
+    cursor.execute(query,(productname,price,description,photo))
     
     connection.commit()
 

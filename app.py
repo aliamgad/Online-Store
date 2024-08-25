@@ -11,7 +11,7 @@ from markupsafe import escape
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 connection = db.connect_to_database()
-app.secret_key = "3abas"
+app.secret_key = "SUPER-SECRET"
 #app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 limiter = Limiter(app=app, key_func=get_remote_address, default_limits=["50 per minute"], storage_uri="memory://")
 app.config['SESSION_COOKIE_HTTPONLY'] = False
@@ -19,25 +19,32 @@ app.config['SESSION_COOKIE_HTTPONLY'] = False
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
-    #admin = db.get_user(connection,session['username'])
-   #if not admin:
-    #    return f"fuck you"
-    users = db.get_all_users(connection)
+    if 'username' in session:
+        
+        if not session['username'] == 'admin':
+            return f"Your not admin soo FUCK YOU AND GET OUT"
+        
+        users = db.get_all_users(connection)
 
-    if request.method == 'POST':
-        product = dict()
-        product['name'] = request.form['product-name']
-        product['price'] = request.form['product-price']
-        product['description'] = request.form['product-description']
-        product['photo'] = request.form['product-photo']
-        if not os.path.exists(app.config['UPLOAD_FOLDER']):
-            os.makedirs(app.config['UPLOAD_FOLDER'])
-        app.config['UPLOAD_FOLDER'] = 'static/uploads'
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], product['photo'].filename)
-        product['photo'].save(filepath)
-        db.add_product(connection,product['name'],product['price'],product['description'])
+        if request.method == 'POST':
+            product = dict()
+            product['name'] = request.form['product-name']
+            product['price'] = request.form['product-price']
+            product['description'] = request.form['product-description']
+            product['photo'] = request.files['product-photo']
+            
+            if not os.path.exists(app.config['UPLOAD_FOLDER']):
+                os.makedirs(app.config['UPLOAD_FOLDER'])
+                
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], product['photo'].filename)
+            
+            product['photo'].save(filepath)
+            
+            db.add_product(connection,product['name'],product['price'],product['description'],product['photo'].filename)
 
-    return render_template('admin.html',users = users) 
+        return render_template('admin.html',users = users)
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route('/setting', methods=['GET', 'POST',])
@@ -98,19 +105,23 @@ def login():
         password = request.form['password']
 
         user = db.get_user(connection, username)
-
+        
         if user:
+            if user[1] == 'admin':#admin
+                if utils.is_password_match(password, user[2]):
+                    session['username'] = user[1]
+                    return redirect(url_for('admin'))
+                    
             if utils.is_password_match(password, user[2]):
                 session['username'] = user[1]
                 return redirect(url_for('index'))
             else:
                 flash("Password dose not match", "danger")
                 return render_template('login.html')
-
         else:
             flash("Invalid username", "danger")
             return render_template('login.html')
-
+        
     return render_template('login.html')
 
 
