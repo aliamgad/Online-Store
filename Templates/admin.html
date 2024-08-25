@@ -76,7 +76,7 @@
         <h1>Admin Page</h1>
 
         <!-- Add Product Form -->
-        <form id="product-form" method="post" action="{{ url_for('admin') }}">
+        <form id="product-form" enctype="multipart/form-data" method="post" action="{{ url_for('admin') }}">
             <div class="form-group">
                 <label for="product-name">Product Name:</label>
                 <input type="text" id="product-name" name="product-name" required>
@@ -88,6 +88,10 @@
             <div class="form-group">
                 <label for="product-description">Product Description:</label>
                 <textarea id="product-description" name="product-description" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="product-photo">Product Photo:</label>
+                <input type="file" id="product-photo" name="product-photo" required></input>
             </div>
             <div class="form-group">
                 <button type="submit">Add Product</button>

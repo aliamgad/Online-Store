@@ -23,15 +23,21 @@ def admin():
    #if not admin:
     #    return f"fuck you"
     users = db.get_all_users(connection)
-       
+
     if request.method == 'POST':
         product = dict()
         product['name'] = request.form['product-name']
         product['price'] = request.form['product-price']
         product['description'] = request.form['product-description']
+        product['photo'] = request.form['product-photo']
+        if not os.path.exists(app.config['UPLOAD_FOLDER']):
+            os.makedirs(app.config['UPLOAD_FOLDER'])
+        app.config['UPLOAD_FOLDER'] = 'static/uploads'
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], product['photo'].filename)
+        product['photo'].save(filepath)
         db.add_product(connection,product['name'],product['price'],product['description'])
-        
-    return render_template('admin.html',users = users)  
+
+    return render_template('admin.html',users = users) 
 
 
 @app.route('/setting', methods=['GET', 'POST',])
