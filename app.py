@@ -25,7 +25,7 @@ def admin():
             return f"Your not admin soo FUCK YOU AND GET OUT"
         
         users = db.get_all_users(connection)
-
+        
         if request.method == 'POST':
             product = dict()
             product['name'] = request.form['product-name']
@@ -42,7 +42,8 @@ def admin():
             
             db.add_product(connection,product['name'],product['price'],product['description'],product['photo'].filename)
 
-        return render_template('admin.html',users = users)
+        products = db.get_all_product(connection)
+        return render_template('admin.html',users = users, products = products)
     else:
         return redirect(url_for('login'))
 

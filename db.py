@@ -133,6 +133,15 @@ def get_product(connection,productname):#don't forget if u are using this funct 
     
     return cursor.fetchone()
 
+def get_all_product(connection):#admin
+    cursor = connection.cursor()
+    
+    query = 'SELECT * FROM products'
+    
+    cursor.execute(query)
+    
+    return cursor.fetchall()
+
 def delete_product(connection,productname):#adminOnly
     cursor = connection.cursor()
     

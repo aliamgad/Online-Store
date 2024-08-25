@@ -118,6 +118,25 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <!-- Product Table -->
+        <h2>Products</h2>
+        <table id="Product-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product[1] }}</td>
+                    <td>{{ product[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
