@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - QuestNexus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css') }}">
 </head>
 <body>
@@ -22,6 +23,7 @@
         <section class="auth-form">
             <h2>Register</h2>
             <form action="/register" method="POST">
+                {% include 'includes/alert.html' %}
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
                 
@@ -32,6 +34,8 @@
             </form>
             <p>Already have an account? <a href="login.html">Login here</a></p>
         </section>
+        <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/close-all-alerts.js') }}"></script>
     </main>
 </body>
 </html>
