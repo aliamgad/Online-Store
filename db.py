@@ -60,6 +60,15 @@ def search_users(connection, search_query):#admin
     
     return cursor.fetchall()
 
+def get_all_users(connection):#admin
+    cursor = connection.cursor()
+    
+    query = 'SELECT * FROM users'
+    
+    cursor.execute(query)
+    
+    return cursor.fetchall()
+
 def delete_user(connection, username):#admin
     cursor = connection.cursor()
     
@@ -90,19 +99,19 @@ def product_db(connection):
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			productname TEXT NOT NULL UNIQUE,
             price INTEGER NOT NULL,
-            photo TEXT NOT NULL,
+            photo TEXT,
             description TEXT
 		)
 	''')
     
     connection.commit()
     
-def add_product(connection,productname, price,photo,description): #adminOnly #see if we remove the photo or not from the adding not in setting
+def add_product(connection,productname,price,description): #adminOnly #see if we remove the photo or not from the adding not in setting
     cursor = connection.cursor()
     
-    query = ''' INSERT INTO products (productname,price,photo,description) VALUES(?,?,?,?)'''
+    query = ''' INSERT INTO products (productname,price,description) VALUES(?,?,?)'''
     
-    cursor.excute(query,(productname,price,photo,description))
+    cursor.execute(query,(productname,price,description))
     
     connection.commit()
 
@@ -120,7 +129,7 @@ def get_product(connection,productname):#don't forget if u are using this funct 
     
     query = ''' SELECT * FROM products WHERE productname = ?'''
     
-    cursor.excute(query,productname)
+    cursor.execute(query,productname)
     
     return cursor.fetchone()
 

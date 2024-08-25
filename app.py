@@ -13,7 +13,21 @@ limiter = Limiter(app=app, key_func=get_remote_address, default_limits=["50 per 
 app.config['SESSION_COOKIE_HTTPONLY'] = False
 
 
-
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    #admin = db.get_user(connection,session['username'])
+   #if not admin:
+    #    return "fuck you"
+    users = db.get_all_users(connection)
+       
+    if request.method == 'POST':
+        product = dict()
+        product['name'] = request.form['product-name']
+        product['price'] = request.form['product-price']
+        product['description'] = request.form['product-description']
+        db.add_product(connection,product['name'],product['price'],product['description'])
+        
+    return render_template('admin.html',users = users)  
 
 
 
