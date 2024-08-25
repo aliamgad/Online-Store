@@ -23,14 +23,16 @@
         <section class="search-bar">
             <h3>Search Products</h3>
             <form class="search-form" onsubmit="return false;">
-                <input type="text" id="search-input" placeholder="Search for products..." required class="search-input">
-                <button type="button" class="search-button" onclick="filterProducts()">Search</button>
+                <input type="text" id="search-input" placeholder="Search for products..." required class="search-input" method="post"
+                action={{url_for("shop")}}>
+                <button type="button" class="search-button">Search</button>
             </form>
         </section>
-        
         <!-- Product List -->
         <section id="product-list" class="product-grid">
-            <!-- Products will be inserted here by JavaScript -->
+            {% for product in products %}
+						<li class="list-group-item" style = "color : white">{{ product[1] }}</li>
+			{% endfor %}
         </section>
     </main>
 </body>
