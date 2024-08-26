@@ -14,9 +14,9 @@
             <a href={{ url_for("index") }}>Home</a>
             <a href={{ url_for("login") }}>Login</a>
             <a href={{ url_for("register") }}>Register</a>
-            <a href={{ url_for("logout") }}>Log out</a>
-            <a href="shop.html">Shop</a>
+            <a href={{ url_for("shop") }}>Shop</a>
             <a href={{ url_for("settings") }}>Settings</a>
+            <a href={{ url_for("logout") }}>Log out</a>
         </nav>
     </header>
     <main>
@@ -37,5 +37,6 @@
         <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/close-all-alerts.js') }}"></script>
     </main>
+    <script src="Static/js/scripts.js"></script>
 </body>
 </html>

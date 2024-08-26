@@ -118,9 +118,9 @@ def add_product(connection,productname,price,description,photo): #adminOnly #see
 def search_product(connection,search_productname):
     cursor = connection.cursor()
     
-    query = '''SELECT productname FROM products WHERE productname LIKE ?'''
+    query = '''SELECT * FROM products WHERE productname LIKE ?'''
     
-    cursor.execute(query, (f"%{search_productname}%",))
+    cursor.execute(query, (f"{search_productname}%",))
     
     return cursor.fetchall()
 

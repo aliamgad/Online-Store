@@ -153,14 +153,19 @@ def register():
 
     return render_template('register.html')
 
-@app.route('/search', methods=['GET', 'POST'])
+@app.route('/shop', methods=['GET', 'POST'])
 def shop():
     if request.method == 'POST':
-        search_query = request.form['search_query']
-        product = db.search_product(connection, search_query)
-        print("YYYYYYYAaaaaaaaaaaaaaaaaaaYYYYYYYYYYYYYYYAAaaa")
-        return render_template('shop.html', product = product)
-    return render_template('shop.html')
+        query = request.form.get('search-input')  # Get the search input from the form
+        products = db.search_product(connection, query)
+        
+        search_query = escape(request.form['search-input'])
+        
+        return render_template('shop.html',products=products, search_query = search_query)
+    products = db.search_product(connection, "")
+    return render_template('shop.html',products=products, search_query = "")
+
+
 
 @app.route('/logout')
 def logout():
