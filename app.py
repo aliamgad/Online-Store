@@ -159,6 +159,7 @@ def register():
             return render_template('register.html')
         else:
             db.add_user(connection, username, password)
+            flash("Done","success")
             return redirect(url_for('login'))
 
     return render_template('register.html')
@@ -187,7 +188,7 @@ def product_detail(product_id):
 @app.route('/payment/<product_id>')
 def bought_product(product_id):
     if 'username' not in session:
-        return 'يا بايع دينك وعرضك يا ...'
+        return 'NO Hacking'
     user = db.get_user(connection, session['username'])
     
     product = db.get_product(connection, product_id)
@@ -220,7 +221,6 @@ def checkout(product_id):
 
 @app.route('/confirm_purchase', methods=['POST'])
 def confirm_purchase():
-    product_id = request.form['product_id']
     name = request.form['name']
     price = request.form['price']
     
@@ -230,7 +230,7 @@ def confirm_purchase():
         return redirect(f'/payment/{name}')
     else:
         flash("Purchase Failed, Please Try Again", "danger")
-        return redirect(f'/payment/{name}')
+        return redirect(f'/checkout/{name}')
 
 @app.route('/logout')
 def logout():
