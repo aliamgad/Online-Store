@@ -201,52 +201,101 @@ footer {
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Green glow */
 }
 
-
+/* Product Info */
 .product-info {
-    max-width: 600px;
+    display: flex;
+    flex-direction: row; /* Aligns image and text side by side */
+    gap: 90px; /* Space between the image and the text content */
+    padding-left: 20%; /* Aligns with the container padding */
 }
 
-.product-info h1 {
-    font-size: 2.5em;
-    color: #00ff00; /* Glowing green */
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); /* Green glow */
+.product-info img {
+    max-width: 800px; /* Limits the width of the image */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
 }
 
-.product-info .price {
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.product-details h2 {
+    font-size: 2em;
+    color: #00ff00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    margin-bottom: 10px;
+}
+
+.product-details .price {
     font-size: 1.8em;
-    color: #00ff00; /* Glowing green */
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7); /* Green glow */
+    color: #00ff00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    margin-bottom: 10px;
 }
 
-.product-info .description {
-    margin: 20px 0;
+.product-details .description {
+    margin: 10px 0 20px 0; /* Space between description and the Buy button */
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #333; /* Darker color for description text */
 }
 
-.product-info button {
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.button-container .button {
     padding: 10px 20px;
     border: none;
-    border-radius: 12px; /* Rounded corners */
+    border-radius: 12px;
     background-color: #333;
-    color: #00ff00; /* Glowing green */
+    color: #00ff00;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
     transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 10px;
+    flex: 0 1 auto;
 }
 
-.product-info button:hover {
+.button-container .button:hover {
     background-color: #444;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Green glow on hover */
 }
 
-@media (max-width: 600px) {
-    .product {
-        width: 100%; /* Make products full width on small screens */
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
     }
 
-    .product-photo-container {
-        height: 150px; /* Adjust height for smaller screens */
+    .product-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-info img {
+        margin-bottom: 20px;
+    }
+
+    .product-details {
+        text-align: center;
+    }
+
+    .button-container {
+        justify-content: center;
     }
 }
+
 /* Settings Form Styles */
 .settings-form {
     max-width: 600px;

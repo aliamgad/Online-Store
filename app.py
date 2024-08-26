@@ -190,8 +190,7 @@ def bought_product(product_id):
         cursor.execute(query, (new_balance, user[0]))
 
         connection.commit()
-
-        return "congrats"
+        return render_template('index.html')
         
 
 @app.route('/logout')
