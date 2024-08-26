@@ -173,7 +173,7 @@ def product_detail(product_id):
 
 @app.route('/payment/<product_id>')
 def bought_product(product_id):
-    if not session['username']:
+    if 'username' not in session:
         return 'يا بايع دينك وعرضك يا ...'
     user = db.get_user(connection, session['username'])
     
