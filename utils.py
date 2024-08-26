@@ -1,4 +1,6 @@
 import re
+import hashlib
+import hmac
 import bcrypt
 
 
@@ -13,6 +15,16 @@ def is_password_match(entered_password, stored_hash):
     stored_hash_bytes = stored_hash.encode()
 
     return bcrypt.checkpw(entered_password.encode(), stored_hash_bytes)
+
+def create_mac(price):
+    secret_password = b"v9bX@34l!zM5Pq8tqwokdop1ie9021212"
+    # Ensure the price is in string format and then encode it to bytes
+    price = str(price).encode('utf-8')
+    
+    # Create an HMAC object using SHA-256
+    mac = hmac.new(secret_password, price, hashlib.sha256).hexdigest()
+
+    return mac
 
 
 def is_strong_password(password):

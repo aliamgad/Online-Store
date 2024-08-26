@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - QuestNexus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css') }}">
 </head>
 <body>
@@ -25,19 +26,16 @@
                 <img src="{{ url_for('static', filename='uploads/' + product[3]) }}" alt="{{ product[1] }}">
                 <div class="product-details">
                     <h2>{{ product[1] }}</h2>
-                    <p class="price">Price: {{ product[2] }}$</p> 
                     <p class="description">{{ product[4] }}</p>
+                    <p class="price">Price: {{ product[2] }}$</p> 
                     <div class="button-container">
-                        <a href="{{ url_for("bought_product", product_id=product[1])}}" class="button">Buy</a>
+                        <a href="{{ url_for("checkout", product_id=product[1])}}" class="button">Buy</a>
                     </div>
                 </div>
             </section>
         </main>
     </div>
-</body>
-
-    
-    
-    
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/close-all-alerts.js') }}"></script>
 </body>
 </html>

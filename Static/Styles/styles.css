@@ -204,13 +204,13 @@ footer {
 /* Product Info */
 .product-info {
     display: flex;
+    justify-content: center;
     flex-direction: row; /* Aligns image and text side by side */
-    gap: 90px; /* Space between the image and the text content */
-    padding-left: 20%; /* Aligns with the container padding */
+    gap: 50px; /* Space between the image and the text content */
 }
 
 .product-info img {
-    max-width: 800px; /* Limits the width of the image */
+    max-width: 600px; /* Limits the width of the image */
     height: auto;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -231,7 +231,7 @@ footer {
 }
 
 .product-details .price {
-    font-size: 1.8em;
+    font-size: 1.5em;
     color: #00ff00;
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
     margin-bottom: 10px;

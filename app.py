@@ -193,7 +193,8 @@ def bought_product(product_id):
     product = db.get_product(connection, product_id)
     
     if product[2] > user[4]:
-        return 'ايف ريحة الفقر'
+        flash('ايف ريحة الفقر', "danger")
+        return redirect(url_for("shop"))
     else:
         new_balance = user[4] - product[2]
         cursor = connection.cursor()
@@ -204,8 +205,32 @@ def bought_product(product_id):
 
         connection.commit()
 
-        return "congrats"
+        return redirect(url_for('index'))
         
+
+@app.route('/checkout/<product_id>')
+def checkout(product_id):
+    product = db.get_product(connection,product_id)
+
+    real_price = db.get_product(connection,product[1])
+    
+    session['Correct_MAC'] = utils.create_mac(real_price[2])
+    
+    return render_template('checkout.html', product_id=product[0], name=product[1], price=product[2])
+
+@app.route('/confirm_purchase', methods=['POST'])
+def confirm_purchase():
+    product_id = request.form['product_id']
+    name = request.form['name']
+    price = request.form['price']
+    
+    Possible_Correct_MAC = utils.create_mac(price)
+
+    if 'Correct_MAC' in session and session['Correct_MAC'] == Possible_Correct_MAC:
+        return redirect(f'/payment/{name}')
+    else:
+        flash("Purchase Failed, Please Try Again", "danger")
+        return redirect(f'/payment/{name}')
 
 @app.route('/logout')
 def logout():

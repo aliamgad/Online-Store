@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - QuestNexus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css') }}">
     <script src="scripts.js" defer></script>
 </head>
@@ -23,6 +24,7 @@
         <!-- Search Section -->
         <section class="search-bar">
             <h3>Search Products for {{search_query}}</h3>
+            {% include 'includes/alert.html' %}
             <form class="search-form" method="POST" action="{{ url_for('shop') }}">
                 <input type="text" id="search-input" name="search-input" placeholder="Search for products..." required class="search-input">
                 <button type="submit" class="search-button">Search</button>
@@ -48,6 +50,8 @@
         
         
     </main>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/close-all-alerts.js') }}"></script>
     <script src="Static/js/scripts.js"></script>
 </body>
 </html>
