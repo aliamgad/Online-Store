@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details - QuestNexus</title>
+    <title>Product Details - GameStop</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css') }}">
-    <script src="product.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>QuestNexus</h1>
+        <h1>GameStop</h1>
         <nav>
-            <a href={{ url_for("index") }}>Home</a>
-            <a href={{ url_for("login") }}>Login</a>
-            <a href={{ url_for("register") }}>Register</a>
-            <a href={{ url_for("shop") }}>Shop</a>
-            <a href={{ url_for("settings") }}>Settings</a>
-            <a href={{ url_for("logout") }}>Log out</a>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+            <a href="{{ url_for('shop') }}">Shop</a>
+            <a href="{{ url_for('settings') }}">Settings</a>
+            <a href="{{ url_for('logout') }}">Log out</a>
         </nav>
     </header>
     <main>
         <section id="product-details" class="product-detail">
-            <!-- Product details will be inserted here by JavaScript -->
+            <h2>{{ product[1] }}</h2> <!-- Adjust indices based on your data structure -->
+            {% if product[3] %}
+            <img src="{{ url_for('static', filename='uploads/' + product[3]) }}" alt="{{ product[1] }}">
+            {% endif %}
+            <p>Price: {{ product[2] }}$</p> 
+            {% if product[4] %}
+            <p>Description: {{ product[4] }}</p>
+            {% endif %}
         </section>
     </main>
 </body>

@@ -162,7 +162,12 @@ def shop():
     products = db.search_product(connection, "")
     return render_template('shop.html',products=products, search_query = "")
 
-
+@app.route('/product/<product_id>')
+def product_detail(product_id):
+    
+    product = db.search_product(connection,product_id)
+    
+    return render_template('product.html',product=product)
 
 @app.route('/logout')
 def logout():

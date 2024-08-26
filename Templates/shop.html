@@ -33,7 +33,11 @@
                 {% for product in products %}
                     <div class="product">
                         <img src="{{ url_for('static', filename='uploads/' + product[3]) }}" class="product-photo">
-                        <h3> {{ product[1] }}</h3>
+                        <h3>
+                            <a href="{{ url_for("product_detail", product_id=product[1])}}">
+                            {{ product[1] }}
+                            </a>
+                        </h3>
                         <p class="price">{{ product[2] }}$</p>
                     </div>
                 {% endfor %}
@@ -41,6 +45,7 @@
                 <p>No products found.</p>
             {% endif %}
         </section>
+        
         
     </main>
     <script src="Static/js/scripts.js"></script>
