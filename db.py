@@ -124,12 +124,13 @@ def search_product(connection,search_productname):
     
     return cursor.fetchall()
 
+
 def get_product(connection,productname):#don't forget if u are using this funct to select the spicific colums u need 
     cursor = connection.cursor()
     
     query = ''' SELECT * FROM products WHERE productname = ?'''
     
-    cursor.execute(query,productname)
+    cursor.execute(query,(productname,))
     
     return cursor.fetchone()
 

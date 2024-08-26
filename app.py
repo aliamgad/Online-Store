@@ -165,9 +165,34 @@ def shop():
 @app.route('/product/<product_id>')
 def product_detail(product_id):
     
-    product = db.search_product(connection,product_id)
+    
+    product = db.get_product(connection,product_id)
+    
     
     return render_template('product.html',product=product)
+
+@app.route('/payment/<product_id>')
+def bought_product(product_id):
+    if not session['username']:
+        return 'يا بايع دينك وعرضك يا ...'
+    user = db.get_user(connection, session['username'])
+    
+    product = db.get_product(connection, product_id)
+    
+    if product[2] > user[4]:
+        return 'ايف ريحة الفقر'
+    else:
+        new_balance = user[4] - product[2]
+        cursor = connection.cursor()
+    
+        query = 'UPDATE users SET balnaced = ? WHERE id=?'
+        
+        cursor.execute(query, (new_balance, user[0]))
+
+        connection.commit()
+
+        return "congrats"
+        
 
 @app.route('/logout')
 def logout():

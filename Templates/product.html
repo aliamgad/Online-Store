@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details - GameStop</title>
+    <title>Product Details - QuestNexus</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css') }}">
 </head>
 <body>
     <header>
-        <h1>GameStop</h1>
+        <h1>QuestNexus</h1>
         <nav>
             <a href="{{ url_for('index') }}">Home</a>
             <a href="{{ url_for('login') }}">Login</a>
@@ -29,6 +29,8 @@
             <p>Description: {{ product[4] }}</p>
             {% endif %}
         </section>
+        <a href="{{ url_for("bought_product", product_id=product[1])}}" class="button">Buy</a>
+
     </main>
 </body>
 </html>
