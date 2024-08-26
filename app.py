@@ -52,7 +52,20 @@ def admin():
         return render_template('admin.html',users = users, products = products)
     else:
         return redirect(url_for('login'))
+    
+@app.route('/delete_user', methods=['GET', 'POST'])
+def delete_user_button():
+    if request.method == "POST":
+        username = request.form['username']
+        db.delete_user(connection, username)
+    return redirect(url_for('admin'))
 
+@app.route('/delete_product', methods=['GET', 'POST'])
+def delete_product_button():
+    if request.method == "POST":
+        product = request.form['product_name']
+        db.delete_product(connection, product)
+    return redirect(url_for('admin'))
 
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
@@ -190,7 +203,8 @@ def bought_product(product_id):
         cursor.execute(query, (new_balance, user[0]))
 
         connection.commit()
-        return render_template('index.html')
+
+        return "congrats"
         
 
 @app.route('/logout')

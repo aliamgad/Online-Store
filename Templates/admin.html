@@ -108,6 +108,7 @@
                     <th>Username</th>
                     <th>Full Name</th>
                     <th>Balanced</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -116,6 +117,12 @@
                     <td>{{ user[1] }}</td>
                     <td>{{ user[3] }}</td>
                     <td>{{ user[4] }}</td>
+                    <td>
+                        <form action="/delete_user" method="POST">
+                            <input type="hidden" id="usename" name="username" value={{user[1]}}>
+                            <button type="submit">Delete User</button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -128,6 +135,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Price</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -135,6 +143,12 @@
                 <tr>
                     <td>{{ product[1] }}</td>
                     <td>{{ product[2] }}$</td>
+                    <td>
+                        <form action="/delete_product" method="POST">
+                            <input type="hidden" id="product_name" name="product_name" value={{product[1]}}>
+                            <button type="submit">Delete Product</button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

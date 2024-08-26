@@ -63,7 +63,7 @@ def search_users(connection, search_query):#admin
 def get_all_users(connection):#admin
     cursor = connection.cursor()
     
-    query = 'SELECT * FROM users'
+    query = 'SELECT * FROM users WHERE username != "admin"'
     
     cursor.execute(query)
     
