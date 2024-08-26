@@ -96,10 +96,7 @@ def settings():
 @app.route('/')   
 def index():
     if 'username' in session:
-        #if session['username'] == 'admin':
-            #return list(db.get_all_users(connection))
-        #else:
-            return render_template('index.html')
+        return render_template('index.html')
     return redirect(url_for('login'))
 
 
