@@ -241,7 +241,7 @@ footer {
     margin: 10px 0 20px 0; /* Space between description and the Buy button */
     font-size: 1.2em;
     line-height: 1.5;
-    color: #333; /* Darker color for description text */
+    color: #7e7e7e; /* Darker color for description text */
 }
 
 .button-container {
@@ -476,4 +476,30 @@ footer {
     color: #00ff00; /* Glowing green */
     border-top: 1px solid #00ff00; /* Green line at the top */
     margin-top: 20px;
+}
+
+/* Card Style in the Checkout page */
+.cardStyle {
+    border: #3af18c double 20px;
+    border-radius: 30px;
+}
+
+.spanStyle {
+    color: #3af18c;
+    font-size: 50px;
+    font-style: italic;
+}
+
+.spanStyle2 {
+    color: #3af18c;
+    /* font-size: 50px; */
+    font-style: italic;
+}
+
+.btnStyle {
+    background-color: #22e7b5;
+    border: #3af18c solid 5px;
+    border-radius: 12px;
+    font-size: 25px;
+    color: black;
 }
