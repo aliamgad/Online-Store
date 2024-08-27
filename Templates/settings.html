@@ -33,6 +33,16 @@
                         <input type="file" id="profile-photo" name="profile-photo" accept="image/*" onchange="previewImage(event)">
                     </div>
                 </div>
+                <script>
+                    function previewImage(event) {
+                        var reader = new FileReader();
+                        reader.onload = function() {
+                            var output = document.getElementById('preview-image');
+                            output.src = reader.result;
+                        }
+                        reader.readAsDataURL(event.target.files[0]);
+                    }
+                </script>
 
                 <label for="username">User Name:</label>
                 <input type="text" id="username" name="username" value="{{data[1]}}" readonly>

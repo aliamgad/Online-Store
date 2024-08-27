@@ -109,7 +109,7 @@ def settings():
 @app.route('/')   
 def index():
     if 'username' in session:
-        return render_template('index.html')
+        return render_template('index.html',user=session['username'])
     return redirect(url_for('login'))
 
 
@@ -166,16 +166,19 @@ def register():
 
 @app.route('/shop', methods=['GET', 'POST'])
 def shop():
-    if request.method == 'POST':
-        query = request.form.get('search-input')  # Get the search input from the form
-        products = db.search_product(connection, query)
+    if 'username' in session:
+        if request.method == 'POST':
+            query = request.form.get('search-input')  # Get the search input from the form
+            products = db.search_product(connection, query)
+            
+            search_query = escape(request.form['search-input'])
+            
+            return render_template('shop.html',products=products, search_query = search_query)
+        products = db.search_product(connection, "")
+        return render_template('shop.html',products=products, search_query = "")
+    else:
+        return redirect(url_for('login'))
         
-        search_query = escape(request.form['search-input'])
-        
-        return render_template('shop.html',products=products, search_query = search_query)
-    products = db.search_product(connection, "")
-    return render_template('shop.html',products=products, search_query = "")
-
 @app.route('/product/<product_id>')
 def product_detail(product_id):
     
