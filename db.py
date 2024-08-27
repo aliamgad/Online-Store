@@ -26,9 +26,9 @@ def add_user(connection,username,password):
     
     encripted_password = utils.hash_password(password)
     
-    query = ''' INSERT INTO users (username,password,photo_name) VALUES(?,?,?)'''
+    query = ''' INSERT INTO users (username,password,photo_name,balnaced) VALUES(?,?,?,?)'''
     
-    cursor.execute(query, (username,encripted_password,"image.png"))
+    cursor.execute(query, (username,encripted_password,"image.png",0))
     
     connection.commit()
 

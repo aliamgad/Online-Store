@@ -20,6 +20,7 @@
         </nav>
     </header>
     <main>
+        {% include 'includes/alert.html' %}
         <section class="settings-form">
             <h2>User Settings</h2>
             <form action="/settings" method="POST" enctype="multipart/form-data">
@@ -51,7 +52,7 @@
                 <input type="text" id="name" name="name" value="{{data[3]}}">
 
                 <label for="balance">Account Balance:</label>
-                <input type="number" id="balance" name="balance" step="1" min="0" value="{{data[4]}}">
+                <input type="number" id="balance" name="balance" step="1" min="0" value="{{data[4]}}" required>
 
                 <button type="submit">Update Settings</button>
             </form>

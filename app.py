@@ -22,7 +22,7 @@ def admin():
     if 'username' in session:
         
         if not session['username'] == 'admin':
-            return f"Your not admin soo FUCK YOU AND GET OUT"
+            return f"Your not admin"
         
         users = db.get_all_users(connection)
         
@@ -102,6 +102,7 @@ def settings():
             db.update_user(connection , user_data)
             
             data = db.get_user(connection, username)
+            flash("Updated Successfully","success")
             return render_template('settings.html', data=data) 
     else:
         return redirect(url_for('login'))
@@ -196,8 +197,8 @@ def bought_product(product_id):
     
     product = db.get_product(connection, product_id)
     
-    if product[2] > user[4]:
-        flash('ايف ريحة الفقر', "danger")
+    if  user[4]==None or product[2] > user[4] :
+        flash('Price not reached', "danger")
         return redirect(url_for("shop"))
     else:
         new_balance = user[4] - product[2]
@@ -208,7 +209,7 @@ def bought_product(product_id):
         cursor.execute(query, (new_balance, user[0]))
 
         connection.commit()
-
+        flash("Successfully Purchased","success")
         return redirect(url_for('index'))
         
 
