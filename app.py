@@ -109,7 +109,7 @@ def settings():
 @app.route('/')   
 def index():
     if 'username' in session:
-        return render_template('index.html')
+        return render_template('index.html' , username=session['username'])
     return redirect(url_for('login'))
 
 
