@@ -33,7 +33,9 @@ def admin():
             product['description'] = request.form['product-description']
             
             product['photo'] = request.files['product-photo']
-
+            if product['price'] <='0':
+                 flash("Price should be more than zero", "danger")
+                 return redirect(url_for('admin'))
             if product['photo']:
                 if not validators.allowed_file_size(product['photo']):
                     return f"Unallowed size."
